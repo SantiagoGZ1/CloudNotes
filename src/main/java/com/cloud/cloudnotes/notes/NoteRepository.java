@@ -14,7 +14,7 @@ public class NoteRepository {
     private final DynamoDbTable<Note> table;
 
     public NoteRepository(DynamoDbEnhancedClient client) {
-        this.table = client.table("Notess", TableSchema.fromBean(Note.class));
+        this.table = client.table("notes", TableSchema.fromBean(Note.class));
     }
 
     public Note save(Note Note) {
