@@ -60,7 +60,7 @@ public class AwsConfig {
         return DynamoDbClient.builder()
                 .region(region)
                 .credentialsProvider(credentials)
-                .endpointOverride(URI.create("https://localhost.localstack.cloud:4566"))
+                .endpointOverride(URI.create("http://localhost:4566"))
                 .build();
     }
 }
