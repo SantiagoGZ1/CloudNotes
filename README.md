@@ -32,6 +32,12 @@ AWS dynamodb.PutItem => 400 (ResourceNotFoundException) ERROR 46399 --- [CloudNo
 
 ## Comandos
 
+- Arrancar LocalStack:
+
+```
+localstack start
+```
+
 - Crear tabla en LocalStack:
 
 ```
