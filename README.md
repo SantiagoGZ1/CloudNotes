@@ -67,6 +67,34 @@ aws dynamodb scan \
   --endpoint-url http://localhost:4566
 ```
 
+- crear tabla NoteAttachments
+
+```
+aws dynamodb create-table \
+  --table-name NoteAttachments \
+  --attribute-definitions \
+      AttributeName=noteAttachmentId,AttributeType=S \
+      AttributeName=noteId,AttributeType=S \
+  --key-schema \
+      AttributeName=noteAttachmentId,KeyType=HASH \
+  --billing-mode PAY_PER_REQUEST \
+  --global-secondary-indexes \
+      "[
+          {
+              \"IndexName\": \"noteId-index\",
+              \"KeySchema\": [
+                  {\"AttributeName\": \"noteId\", \"KeyType\": \"HASH\"}
+              ],
+              \"Projection\": {\"ProjectionType\": \"ALL\"},
+              \"ProvisionedThroughput\": {
+                  \"ReadCapacityUnits\": 5,
+                  \"WriteCapacityUnits\": 5
+              }
+          }
+      ]" \
+  --endpoint-url=http://localhost:4566
+```
+
 ## Nuevos aprendizajes
 
 -  private Instant createdAt: 'Instant' es una clase en Java que representa un punto específico en el tiempo, con precisión de nanosegundos. Se utiliza comúnmente para almacenar marcas de tiempo y realizar operaciones relacionadas con el tiempo.
