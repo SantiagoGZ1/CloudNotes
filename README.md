@@ -32,6 +32,7 @@ Estos son algunos comandos utilies que usé para trabajar con LocalStack y Dynam
 
 - Crear tabla:
 
+
 ```
 aws dynamodb create-table \
   --endpoint-url http://localhost:4566 \
@@ -61,6 +62,7 @@ aws dynamodb scan \
 
 - crear tabla para los archivos
 
+
 ```
 aws dynamodb create-table \
   --table-name NoteAttachments \
@@ -86,6 +88,44 @@ aws dynamodb create-table \
       ]" \
   --endpoint-url=http://localhost:4566
 ```
+
+#### Tener en cuenta para crear tablas
+| Parte                            | Función                           |
+| -------------------------------- | --------------------------------- |
+| `--table-name NoteAttachments`   | Nombre de la tabla                |
+| `--attribute-definitions`        | Atributos usados en índices       |
+| `--key-schema`                   | Clave primaria (noteAttachmentId) |
+| `--billing-mode PAY_PER_REQUEST` | Modo de cobro                     |
+| `--global-secondary-indexes`     | Índice para buscar por noteId     |
+| `--endpoint-url`                 | Usar LocalStack                   |
+
+
+## S3
+S3 (Simple Storage Service) es un servicio de almacenamiento de objetos en la nube que permite almacenar y recuperar cualquier cantidad de datos desde cualquier lugar en la web. En esta aplicación, S3 se utiliza para almacenar archivos adjuntos asociados a las notas creadas por los usuarios.
+
+Este sistema usa s3 para almacenar los archivos adjuntos de las notas. Los archivos se suben a un bucket de S3 y se asocian con las notas mediante identificadores únicos.
+
+### Comandos LocalStack - S3
+
+- Crear bucket:
+
+```
+aws --endpoint-url=http://localhost:4566 s3 mb s3://cloudnotes-bucket
+```
+
+- Verificar que bucket existen:
+
+```
+aws --endpoint-url=http://localhost:4566 s3 ls
+```
+
+- Listar objetos en un bucket:
+
+```
+aws --endpoint-url=http://localhost:4566 s3 ls s3://cloudnotes-bucket
+``` 
+
+
 
 ## Errores
 Durante el desarrollo de la aplicación, me encontré con varios errores relacionados con la configuración y uso de DynamoDB en LocalStack. A continuación, detallo los errores más comunes y sus soluciones:
