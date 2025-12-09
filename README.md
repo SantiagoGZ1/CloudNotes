@@ -1,5 +1,10 @@
 # Cloud Notes 🗒️ 
 
+<!-- Opción 2: ancho máximo responsivo -->
+<p align="center">
+  <img src="readmeImgs/cloudPort.png" alt="cloudNotes" style="max-width:500px; width:100%; height:auto;" />
+</p>
+
 Cloud Notes es una aplicación de gestión de notas que permite a los usuarios crear, leer, actualizar y eliminar notas almacenadas en la nube utilizando servicios simulados de AWS a través de LocalStack.
 Este proyecto surge por el interés de aprender a integrar servicios en la nube en aplicaciones Java, específicamente utilizando LocalStack para simular un entorno de AWS localmente.
 
