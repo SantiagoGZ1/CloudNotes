@@ -1,4 +1,4 @@
-package com.cloud.cloudnotes.config;
+package com.cloud.cloudnotes.auth;
 
 import com.cloud.cloudnotes.user.UserEntity;
 import com.cloud.cloudnotes.user.UserRepository;
