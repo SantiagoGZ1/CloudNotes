@@ -19,4 +19,13 @@ public class UserMapper {
         if (entity == null) return null;
         return new RegisterDto(entity.getUsername(), entity.getPassword());
     }
+
+    public static UserEntity toEntityLogin (LoginDto dto) {
+        if (dto == null) return null;
+        UserEntity entity = new UserEntity();
+        entity.setUsername(dto.getUsername());
+        entity.setPassword(dto.getPassword());
+        return entity;
+    }
+
 }
