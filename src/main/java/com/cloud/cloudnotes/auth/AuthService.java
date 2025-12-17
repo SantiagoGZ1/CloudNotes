@@ -31,4 +31,22 @@ public class AuthService {
 
         userRepository.save(user);
     }
+
+    public UserEntity validateLogin(String username, String rawPassword) {
+
+        UserEntity user = userRepository.findByUsername(username);
+
+        if (user == null) {
+            throw new RuntimeException("Invalid username or password");
+        }
+
+        boolean passwordMatches =
+                passwordEncoder.matches(rawPassword, user.getPassword());
+
+        if (!passwordMatches) {
+            throw new RuntimeException("Invalid username or password");
+        }
+
+        return user;
+    }
 }
