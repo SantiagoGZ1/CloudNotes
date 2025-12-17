@@ -1,7 +1,9 @@
 package com.cloud.cloudnotes.auth;
 
 import com.cloud.cloudnotes.user.UserEntity;
+import com.cloud.cloudnotes.user.dto.LoginDto;
 import com.cloud.cloudnotes.user.dto.RegisterDto;
+import com.cloud.cloudnotes.user.dto.UserMapper;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,9 +28,13 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody UserEntity req) {
+    public String login(@RequestBody LoginDto req) {
+        UserEntity loginEntity = UserMapper.toEntityLogin(req);
+        if (loginEntity == null) {
+            throw new IllegalArgumentException("Login request is null");
+        }
 
-        UserEntity user = authService.validateLogin(req.getUsername(), req.getPassword());
+        UserEntity user = authService.validateLogin(loginEntity.getUsername(), loginEntity.getPassword());
 
         return jwtService.generateToken(user.getUsername());
     }
