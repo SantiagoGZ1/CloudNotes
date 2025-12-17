@@ -12,7 +12,7 @@ public class NoteAttachmentRepository {
     private final DynamoDbTable<NoteAttachment> table;
 
     public NoteAttachmentRepository(DynamoDbEnhancedClient client) {
-        this.table = client.table("NoteAttachments", TableSchema.fromBean(NoteAttachment.class));
+        this.table = client.table("noteAttachments", TableSchema.fromBean(NoteAttachment.class));
     }
 
     public NoteAttachment save(NoteAttachment noteAttachment) {
